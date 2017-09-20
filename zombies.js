@@ -119,7 +119,6 @@ class Player {
   }
 
   checkPack(){
-    this.checkPack = this._pack;
     console.log(this._pack);
   }
 
@@ -146,11 +145,20 @@ class Player {
       }
   }
 
-/*  equip(weapon){
+  equip(weapon){
     var weaponIndex = this.getPack().indexOf(weapon);
-    if (weapon instanceof Weapon)
+    if (weapon instanceof Weapon){
+      if (weaponIndex  === -1){
+        if (this.equip === false)
+          this.equip = weapon;
+ //         this.discard(weapon);
+      }else{
+        this.getPack()
+      }
+    }
+
   };
-*/
+
 
 }
 
