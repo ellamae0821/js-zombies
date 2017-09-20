@@ -122,10 +122,11 @@ class Player {
     console.log(this._pack);
   }
 
+
   takeItem(item){
-    if(this.getPack().length < 3 || this.getPack().indexOf(item) >0 ){
+    if(this.getPack().length <3 ){
       this._pack.push(item);
-      console.log("Player " + this.name + "\'s your item, " + this.item + ", has been added to your pack");
+      console.log("Player " + this.name + "\'s your item, " + this.item + ", has been added to your pack")
       return true;
     }else{
       console.log("Sorry, your pack is full");
@@ -133,32 +134,49 @@ class Player {
     }
   }
 
+
+
   discardItem(item){
-    let itemIndex = this.getPack().indexOf(item);
-      if (itemIndex === -1){
-        console.log("Player " + this.name + "\'s item," + this.item + " ,is not found in pack, no item discarded");
-        return false;
-      }else{
-        var removeItem = this.getPack().splice(itemIndex, 1);
-        console.log("Player " + this.name + "\'s item, " + this.item + " ,has been discarded");
-        return true;
-      }
+    let itemIndex = this.getPack().indexOf(item); // index of item to take off from pack
+    if(itemIndex === -1){
+      console.log("Player " + this.name + "\'s item," + this.item + " ,is not found in pack, no item discarded");
+      return false;
+    }else{
+      var removeItem = this.getPack().splice(itemIndex, 1); // item taken from bag, then remove 1
+      console.log("Player " + this.name + "\'s item, " + this.item + " ,has been discarded");
+      return true;
+    }
   }
+
+
 
   equip(weapon){
     let weaponIndex = this.getPack().indexOf(weapon);
-    if (weapon instanceof Weapon){
-      if (weaponIndex  === -1){
-        if (this.equip === false)
-          this.equip = weapon;
-          this.discardItem(weapon);
-          }else{
-          this.getPack().splice(weaponIndex, 1, this.equipped);
+    if (weapon instanceof Weapon){ // if weapon is within the 'WEAPON'
+      if (weaponIndex  === -1){ // if it is currently not in pack
+//        if (this.equipped === false) // if not equipped
+          return false
           this.equipped = weapon;
-
+          }else{
+          this.getPack().splice(weaponIndex, 1, this.equipped); // get the weapon from pac with the weapon
+          this.equipped = weapon;
       }
     }
   }
+
+/*  equip(weapon){
+    let weaponIndex = this.getPack().indexOf(weapon);
+    if(weapon instanceof Weapon){
+      if(weaponIndex === -1){
+        if(this.equipped === false){
+          this.equipped = weapon;
+        }else{
+          this.getPack().splice(weaponIndex, 1, this.equipped);
+          this.equipped = weapon;
+        }
+      }
+    }
+  }*/
 
 
   eat(food){
