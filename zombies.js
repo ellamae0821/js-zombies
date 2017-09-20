@@ -1,4 +1,4 @@
-//JSHINT ES6
+//jshint esversion: 6
 /**
  * Class => Item(name)
  * -----------------------------
@@ -98,6 +98,58 @@ class Food extends Item{
  */
 
 
+class Player {
+  constructor(name, health, strength, speed){
+    this.name = name;
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this._pack = [];
+    this._maxHealth = health;
+    this.isAlive = true;
+    this.equipped = false;
+//    this.getMaxHealth = maxHealth;
+  }
+  getPack (){
+    this.getPack = this._pack;
+    return this._pack;
+  }
+  getMaxHealth(){
+    this.getMaxHealth = this._maxHealth;
+    return this._maxHealth;
+  }
+
+  checkPack(){
+    this.checkPack = this._pack;
+    console.log(this._pack);
+  }
+
+  takeItem(item){
+    if(this.getPack().length < 3 || this.getPack().indexOf(item) >0 ){
+      this._pack.push(item);
+      console.log(item + " has been added to your pack");
+      return true;
+    }else{
+      console.log("Sorry, your pack is full");
+      return false;
+    }
+  }
+
+  discardItem(item){
+    var itemIndex = this.getPack().indexOf(item);
+      if (itemIndex === -1){
+        console.log(" ");
+        return true;
+      }else{
+        var removeItem = this.getPack().splice(itemIndex, 1);
+        return false;
+      }
+  }
+
+
+
+}
+
 /**
  * Player Class Method => checkPack()
  * -----------------------------
@@ -109,6 +161,7 @@ class Food extends Item{
  *
  * @name checkPack
  */
+
 
 
 /**
