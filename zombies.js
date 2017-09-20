@@ -151,13 +151,19 @@ class Player {
       if (weaponIndex  === -1){
         if (this.equip === false)
           this.equip = weapon;
- //         this.discard(weapon);
-      }else{
-        this.getPack()
+//          this.discard(weapon);
+          }else{
+          this.getPack().splice(weaponIndex, 1, this.equipped);
+          this.equipped = weapon;
+
       }
     }
-
   };
+
+  eat (food){
+
+  }
+
 
 
 }
@@ -308,6 +314,16 @@ class Player {
  * @property {boolean} isAlive      Default value should be `true`.
  */
 
+ class Zombie {
+  constructor(health, strength, speed){
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this._maxHealth = health;
+    this.isAlive = true;
+  }
+ }
+
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -325,12 +341,18 @@ class Player {
  */
 
 
+
 /**
  * FastZombie Extends Zombie Class
  * -----------------------------
  */
 
-
+class FastZombie extends Zombie{
+  constructor(health, strength, speed){
+    super(health, strength, speed);
+    this.speed = speed;
+  }
+}
 
 /**
  * Class => StrongZombie(health, strength, speed)
@@ -353,7 +375,12 @@ class Player {
  * -----------------------------
  */
 
-
+class StrongZombie extends Zombie{
+  constructor(health, strength, speed){
+    super(health, strength, speed);
+    this.speed = speed;
+  }
+}
 
 /**
  * Class => RangedZombie(health, strength, speed)
@@ -376,7 +403,12 @@ class Player {
  * -----------------------------
  */
 
-
+class RangedZombie extends Zombie{
+  constructor(health, strength, speed){
+    super(health, strength, speed);
+    this.speed = speed;
+  }
+}
 
 /**
  * Class => ExplodingZombie(health, strength, speed)
@@ -399,7 +431,12 @@ class Player {
  * -----------------------------
  */
 
-
+class ExplodingZombie extends Zombie{
+  constructor(health, strength, speed){
+    super(health, strength, speed);
+    this.speed = speed;
+  }
+}
 
 
 /**
