@@ -125,7 +125,7 @@ class Player {
   takeItem(item){
     if(this.getPack().length < 3 || this.getPack().indexOf(item) >0 ){
       this._pack.push(item);
-      console.log(name + ",your item " +  "has been added to your pack");
+      console.log("Player " + this.name + "\'s your item, " + this.item + ", has been added to your pack");
       return true;
     }else{
       console.log("Sorry, your pack is full");
@@ -136,11 +136,11 @@ class Player {
   discardItem(item){
     let itemIndex = this.getPack().indexOf(item);
       if (itemIndex === -1){
-        console.log(name + "your item" + item + " is not found in pack, no item discarded");
+        console.log("Player " + this.name + "\'s item," + this.item + " ,is not found in pack, no item discarded");
         return false;
       }else{
         var removeItem = this.getPack().splice(itemIndex, 1);
-        console.log(name + " , your item" + item + " has been discarded");
+        console.log("Player " + this.name + "\'s item, " + this.item + " ,has been discarded");
         return true;
       }
   }
@@ -187,7 +187,7 @@ class Player {
       console.log("No item is equipped");
       return false;
     } else {
-      console.log(this.name + " is equipped with " + this.equipped.name);
+      console.log("Player " + this.name + " is equipped with " + this.equipped.name);
       return this.equipped.name;
     }
   }
