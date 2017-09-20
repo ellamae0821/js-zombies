@@ -155,7 +155,7 @@ class Player {
     if (weapon instanceof Weapon){ // if weapon is within the 'WEAPON'
       if (weaponIndex  === -1){ // if it is currently not in pack
 //        if (this.equipped === false) // if not equipped
-          return false
+          return false;
           this.equipped = weapon;
           }else{
           this.getPack().splice(weaponIndex, 1, this.equipped); // get the weapon from pac with the weapon
