@@ -125,7 +125,7 @@ class Player {
   takeItem(item){
     if(this.getPack().length < 3 || this.getPack().indexOf(item) >0 ){
       this._pack.push(item);
-      console.log(item + " has been added to your pack");
+      console.log(name + ",your item " +  "has been added to your pack");
       return true;
     }else{
       console.log("Sorry, your pack is full");
@@ -134,7 +134,7 @@ class Player {
   }
 
   discardItem(item){
-    var itemIndex = this.getPack().indexOf(item);
+    let itemIndex = this.getPack().indexOf(item);
       if (itemIndex === -1){
         console.log(name + "your item" + item + " is not found in pack, no item discarded");
         return false;
@@ -146,24 +146,51 @@ class Player {
   }
 
   equip(weapon){
-    var weaponIndex = this.getPack().indexOf(weapon);
+    let weaponIndex = this.getPack().indexOf(weapon);
     if (weapon instanceof Weapon){
       if (weaponIndex  === -1){
         if (this.equip === false)
           this.equip = weapon;
-//          this.discard(weapon);
+          this.discardItem(weapon);
           }else{
           this.getPack().splice(weaponIndex, 1, this.equipped);
           this.equipped = weapon;
 
       }
     }
-  };
-
-  eat (food){
-
   }
 
+
+  eat(food){
+    let foodIndex = this.getPack().indexOf(food);
+    if (food instanceof Food){
+      if (foodIndex  !== -1){
+        this.discardItem(food);
+        this.health += food.energy;
+        if (this.health > this.getMaxHealth()) {
+          this.health = this.getMaxHealth();
+        }
+      }
+    }
+  }
+
+  useItem(item) {
+    if (item instanceof Weapon) {
+      this.equip(item);
+    } else if (item instanceof Food) {
+      this.eat(item);
+    }
+  }
+
+  equippedWith() {
+    if (this.equipped === false) {
+      console.log("No item is equipped");
+      return false;
+    } else {
+      console.log(this.name + " is equipped with " + this.equipped.name);
+      return this.equipped.name;
+    }
+  }
 
 
 }
