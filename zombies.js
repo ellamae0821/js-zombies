@@ -137,11 +137,12 @@ class Player {
   discardItem(item){
     var itemIndex = this.getPack().indexOf(item);
       if (itemIndex === -1){
-        console.log(" ");
-        return true;
+        console.log(name + "your item" + item + " is not found in pack, no item discarded");
+        return false;
       }else{
         var removeItem = this.getPack().splice(itemIndex, 1);
-        return false;
+        console.log(name + " , your item" + item + " has been discarded");
+        return true;
       }
   }
 
