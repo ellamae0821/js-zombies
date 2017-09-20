@@ -108,14 +108,13 @@ class Player {
     this._maxHealth = health;
     this.isAlive = true;
     this.equipped = false;
-//    this.getMaxHealth = maxHealth;
+
   }
   getPack (){
-    this.getPack = this._pack;
     return this._pack;
   }
+
   getMaxHealth(){
-    this.getMaxHealth = this._maxHealth;
     return this._maxHealth;
   }
 
@@ -146,7 +145,11 @@ class Player {
       }
   }
 
-
+/*  equip(weapon){
+    var weaponIndex = this.getPack().indexOf(weapon);
+    if (weapon instanceof Weapon)
+  };
+*/
 
 }
 
